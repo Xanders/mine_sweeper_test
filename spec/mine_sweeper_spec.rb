@@ -47,11 +47,9 @@ describe MineSweeper do
       expect(MineSweeper.boards).to be_a(Hash)
     end
 
-    it 'has board hashes' do
+    it 'has board' do
       MineSweeper.boards.values.each do |board|
-        expect(board).to be_a(Hash)
-        expect(board['size']).to be_a(Numeric)
-        expect(board['mines']).to be_an(Array)
+        expect(board).to be_a(BoardMap)
       end
     end
   end

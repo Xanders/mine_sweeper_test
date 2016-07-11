@@ -7,8 +7,7 @@ class MineSweeper
   BOARDS_FILE = 'boards.yml'
 
   def initialize(type)
-    @board = self.class.boards[type] or raise BadBoard.new(type)
-    @map = BoardMap.new(@board['size'], @board['mines'])
+    @map = self.class.boards[type] or raise BadBoard.new(type)
   end
 
   def render(io)
@@ -17,7 +16,7 @@ class MineSweeper
 
   def self.boards
     @@boards ||= YAML.load_file(BOARDS_FILE).inject({}) do |hash, board| # group_by не подходит, т.к. значениями становятся массивы
-      hash[board['type']] = board
+      hash[board['type']] = BoardMap.new(board['size'], board['mines'])
       hash
     end
   end
