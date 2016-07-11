@@ -1,0 +1,11 @@
+version: '2'
+services:
+  app:
+    image: ruby
+    command: bash -l -c 'bundle && bundle exec rspec'
+    working_dir: /project
+    volumes:
+      - '.:/project'
+      - 'bundle:/usr/local/bundle'
+volumes:
+  bundle:

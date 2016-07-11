@@ -1,4 +1,4 @@
-require 'pry'
+﻿require 'pry'
 require './lib/mine_sweeper'
 
 describe MineSweeper do
@@ -40,6 +40,20 @@ describe MineSweeper do
       buffer.string.should == "........\n........\n........\n........\n....1232\n....2***\n....3*8*\n....2***\n"
     end
 
+  end
+
+  describe '.boards' do
+    it 'is a hash' do
+      expect(MineSweeper.boards).to be_a(Hash)
+    end
+
+    it 'has board hashes' do
+      MineSweeper.boards.values.each do |board|
+        expect(board).to be_a(Hash)
+        expect(board['size']).to be_a(Numeric)
+        expect(board['mines']).to be_an(Array)
+      end
+    end
   end
 
 end
